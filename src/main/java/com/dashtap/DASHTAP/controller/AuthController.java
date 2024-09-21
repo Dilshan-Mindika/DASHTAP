@@ -22,6 +22,9 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signupUser(@RequestBody SignupRequest signupRequest){
 
+        if (authService.hasUserWithEmail(signupRequest.getEmail()))
+            return new ResponseEntity<>("User already exist with this email", HttpStatus.NOT_ACCEPTABLE);
+
         UserDTO createdUserDTO = authService.createUser(signupRequest);
         if (createdUserDTO == null) return new ResponseEntity<>
                 ("User not created, Come again later", HttpStatus.BAD_REQUEST);

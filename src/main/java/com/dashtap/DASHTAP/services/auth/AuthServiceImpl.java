@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean hasUserWithEmail(String email) {
-        return false;
+        return userRepository.findFirstByEmail(email).isPresent();
     }
 
 }
