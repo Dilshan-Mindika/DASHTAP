@@ -49,7 +49,7 @@ public class JWTUtils {
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
     }
 
-    private boolean isToeknExpired(String token) {
+    private boolean isTokenExpired(String token) { // Fixed method name
         return extractExpiration(token).before(new Date());
     }
 
@@ -65,5 +65,4 @@ public class JWTUtils {
         byte[] keyBytes = Decoders.BASE64.decode("412F4428472B4B6250655368566D5970337336763979244226452948404D6351");
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
 }
