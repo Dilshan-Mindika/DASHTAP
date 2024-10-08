@@ -25,6 +25,10 @@ public class User implements UserDetails {
 
     private String password;
 
+    private String phone;
+
+    private String NIC;
+
     private UserRole userRole;
 
     @Override

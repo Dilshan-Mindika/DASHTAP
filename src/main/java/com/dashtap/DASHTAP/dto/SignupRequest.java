@@ -9,6 +9,10 @@ public class SignupRequest {
 
     private String email;
 
+    private String phone;
+
+    private String NIC;
+
     private String password;
 
 }
