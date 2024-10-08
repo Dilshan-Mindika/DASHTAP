@@ -13,4 +13,6 @@ public interface AdminService {
 
     void deleteVehicle(Long id);
 
+    VehicleDTO getVehicleById(Long id);
+
 }

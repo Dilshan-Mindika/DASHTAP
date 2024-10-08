@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @GetMapping("/vehicles")
-    public ResponseEntity<?> getVehicles() {
+    public ResponseEntity<?> getAllVehicles() {
         return ResponseEntity.ok(adminService.getAllVehicles());
     }
 
@@ -38,4 +38,9 @@ public class AdminController {
         return ResponseEntity.ok(null);
     }
 
+    @GetMapping("/vehicle/{id}")
+    public ResponseEntity<VehicleDTO> getVehicleById(@PathVariable Long id) {
+        VehicleDTO vehicleDTO = adminService.getVehicleById(id);
+        return ResponseEntity.ok(vehicleDTO);
+    }
 }
