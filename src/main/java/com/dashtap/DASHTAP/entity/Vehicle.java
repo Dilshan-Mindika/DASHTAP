@@ -1,5 +1,6 @@
 package com.dashtap.DASHTAP.entity;
 
+import com.dashtap.DASHTAP.dto.VehicleDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -41,5 +42,24 @@ public class Vehicle {
 
     @Column(columnDefinition = "longblob")
     private byte[] image;
+
+    public VehicleDTO getVehicleDTO() {
+        VehicleDTO vehicleDTO = new VehicleDTO();
+        vehicleDTO.setId(id);
+        vehicleDTO.setBrand(brand);
+        vehicleDTO.setName(name);
+        vehicleDTO.setOwner(owner);
+        vehicleDTO.setOwnerNumber(ownerNumber);
+        vehicleDTO.setType(type);
+        vehicleDTO.setRegNumber(regNumber);
+        vehicleDTO.setColor(color);
+        vehicleDTO.setTransmission(transmission);
+        vehicleDTO.setFuelType(fuelType);
+        vehicleDTO.setRate(rate);
+        vehicleDTO.setDescription(description);
+        vehicleDTO.setYear(year);
+        vehicleDTO.setReturnedImage(image);
+        return vehicleDTO;
+    }
 
 }

@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +40,10 @@ public class AdminServiceImpl implements AdminService {
     }catch (Exception e){
             return false;
         }
+    }
+
+    @Override
+    public List<VehicleDTO> getAllVehicles() {
+        return vehicleRepository.findAll().stream().map(Vehicle::getVehicleDTO).collect(Collectors.toList());
     }
 }
