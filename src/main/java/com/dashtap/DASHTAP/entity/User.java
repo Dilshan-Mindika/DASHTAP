@@ -25,9 +25,9 @@ public class User implements UserDetails {
 
     private String password;
 
-    private String phone;
+    private Long phone;
 
-    private String NIC;
+    private Long NIC;
 
     private UserRole userRole;
 

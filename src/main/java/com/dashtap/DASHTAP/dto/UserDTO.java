@@ -13,9 +13,9 @@ public class UserDTO {
 
     private String email;
 
-    private String phone;
+    private Long phone;
 
-    private String NIC;
+    private Long NIC;
 
     private UserRole userRole;
 
