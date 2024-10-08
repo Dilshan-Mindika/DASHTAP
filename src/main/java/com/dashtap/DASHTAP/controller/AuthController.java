@@ -7,6 +7,7 @@ import com.dashtap.DASHTAP.dto.UserDTO;
 import com.dashtap.DASHTAP.entity.User;
 import com.dashtap.DASHTAP.repository.UserRepository;
 import com.dashtap.DASHTAP.services.auth.AuthService;
+import com.dashtap.DASHTAP.services.jwt.UserServiceImpl;
 import com.dashtap.DASHTAP.utills.JWTUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,8 @@ public class AuthController {
     private final JWTUtils jwtUtil;
 
     private final UserRepository userRepository;
+
+    private final UserServiceImpl userService;
 
 
     @PostMapping("/signup")
