@@ -21,6 +21,8 @@ public class Vehicle {
 
     private String owner;
 
+    private Long ownerNumber;
+
     private String type;
 
     private String regNumber;

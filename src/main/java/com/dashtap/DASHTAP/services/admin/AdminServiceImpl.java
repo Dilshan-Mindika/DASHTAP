@@ -6,6 +6,8 @@ import com.dashtap.DASHTAP.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 @RequiredArgsConstructor
 
@@ -14,18 +16,27 @@ public class AdminServiceImpl implements AdminService {
     private final VehicleRepository vehicleRepository;
 
     @Override
-    public boolean postVehicle(VehicleDTO vehicleDTO) {
-        Vehicle vehicle = new Vehicle();
-        vehicle.setBrand(vehicleDTO.getBrand());
-        vehicle.setName(vehicleDTO.getName());
-        vehicle.setOwner(vehicleDTO.getOwner());
-        vehicle.setOwnerNumber(vehicleDTO.getOwnerNumber());
-        vehicle.setRate(vehicleDTO.getRate());
-        vehicle.setDescription(vehicleDTO.getDescription());
-        vehicle.setYear(vehicleDTO.getYear());
-        vehicle.setImage(vehicleDTO.getImage());
-
-        vehicleRepository.save(vehicle);
-        return false;
+    public boolean postVehicle(VehicleDTO vehicleDTO) throws IOException {
+        try{
+            Vehicle vehicle = new Vehicle();
+            vehicle.setBrand(vehicleDTO.getBrand());
+            vehicle.setName(vehicleDTO.getName());
+            vehicle.setBrand(vehicleDTO.getBrand());
+            vehicle.setOwner(vehicleDTO.getOwner());
+            vehicle.setOwnerNumber(vehicleDTO.getOwnerNumber());
+            vehicle.setType(vehicleDTO.getType());
+            vehicle.setRegNumber(vehicleDTO.getRegNumber());
+            vehicle.setColor(vehicleDTO.getColor());
+            vehicle.setTransmission(vehicleDTO.getTransmission());
+            vehicle.setFuelType(vehicleDTO.getFuelType());
+            vehicle.setRate(vehicleDTO.getRate());
+            vehicle.setDescription(vehicleDTO.getDescription());
+            vehicle.setYear(vehicleDTO.getYear());
+            vehicle.setImage(vehicleDTO.getImage().getBytes());
+            vehicleRepository.save(vehicle);
+            return true;
+    }catch (Exception e){
+            return false;
+        }
     }
 }

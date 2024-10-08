@@ -35,8 +35,8 @@ public class VehicleDTO {
 
     private Date year;
 
-    private byte[] image;
+    private MultipartFile image;
 
-    private MultipartFile returnedImage;
+    private byte[] returnedImage;
 
 }
