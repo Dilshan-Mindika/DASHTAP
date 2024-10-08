@@ -15,4 +15,5 @@ public interface AdminService {
 
     VehicleDTO getVehicleById(Long id);
 
+    boolean updateVehicle(Long vehicleId, VehicleDTO vehicleDTO);
 }
