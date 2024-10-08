@@ -17,6 +17,8 @@ public class VehicleDTO {
 
     private String owner;
 
+    private Long ownerNumber;
+
     private String type;
 
     private String regNumber;
