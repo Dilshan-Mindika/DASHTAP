@@ -11,4 +11,6 @@ public interface AdminService {
 
     List<VehicleDTO> getAllVehicles();
 
+    void deleteVehicle(Long id);
+
 }
