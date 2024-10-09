@@ -9,6 +9,6 @@ public interface UserService {
 
     List<VehicleDTO> getAllVehicles();
 
-    boolean bookVehicle(BookAVehicleDTO bookAVehicleDTO);
+    boolean bookAVehicle(BookAVehicleDTO bookAVehicleDTO);
 
 }
