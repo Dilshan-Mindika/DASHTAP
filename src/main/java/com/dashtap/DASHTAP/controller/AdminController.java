@@ -43,4 +43,15 @@ public class AdminController {
         VehicleDTO vehicleDTO = adminService.getVehicleById(id);
         return ResponseEntity.ok(vehicleDTO);
     }
+
+    @PutMapping("/vehicle/{vehicleId}")
+    public ResponseEntity<Void> updateVehicle(@PathVariable Long vehicleId, @ModelAttribute VehicleDTO vehicleDTO) throws IOException {
+        try {
+            boolean success = adminService.updateVehicle(vehicleId, vehicleDTO);
+            if (success) return ResponseEntity.status(HttpStatus.OK).build();
+            else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }

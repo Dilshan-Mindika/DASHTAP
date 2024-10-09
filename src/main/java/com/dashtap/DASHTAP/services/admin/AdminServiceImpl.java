@@ -60,16 +60,38 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public boolean updateVehicle(Long vehicleId, VehicleDTO vehicleDTO) throws IOException{
+    public boolean updateVehicle(Long vehicleId, VehicleDTO vehicleDTO) {
         Optional<Vehicle> optionalVehicle = vehicleRepository.findById(vehicleId);
-        if (optionalVehicle.isPresent()){
-            Vehicle existingVehicle = optionalVehicle.get();
-            if (vehicleDTO.getImage() != null)
-                existingVehicle.setImage(vehicleDTO.getImage().getBytes());
-            existingVehicle.setBrand(vehicleDTO.getBrand());
-            existingVehicle.setName(VehicleDTO.getName());
 
+        if (optionalVehicle.isPresent()) {
+            Vehicle existingVehicle = optionalVehicle.get();
+
+            if (vehicleDTO.getImage() != null) {
+                try {
+                    existingVehicle.setImage(vehicleDTO.getImage().getBytes());
+                } catch (IOException e) {
+                    return false;
+                }
+            }
+
+            existingVehicle.setBrand(vehicleDTO.getBrand());
+            existingVehicle.setName(vehicleDTO.getName());
+            existingVehicle.setDescription(vehicleDTO.getDescription());
+            existingVehicle.setColor(vehicleDTO.getColor());
+            existingVehicle.setFuelType(vehicleDTO.getFuelType());
+            existingVehicle.setOwnerNumber(vehicleDTO.getOwnerNumber());
+            existingVehicle.setOwner(vehicleDTO.getOwner());
+            existingVehicle.setRate(vehicleDTO.getRate());
+            existingVehicle.setRegNumber(vehicleDTO.getRegNumber());
+            existingVehicle.setTransmission(vehicleDTO.getTransmission());
+            existingVehicle.setYear(vehicleDTO.getYear());
+            existingVehicle.setType(vehicleDTO.getType());
+            vehicleRepository.save(existingVehicle);
+            return true;
+        } else {
+            return false;
+        }
     }
-        return false;
-    }
+
 }
+
