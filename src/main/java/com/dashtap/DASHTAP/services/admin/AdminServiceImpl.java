@@ -4,6 +4,7 @@ import com.dashtap.DASHTAP.dto.BookAVehicleDTO;
 import com.dashtap.DASHTAP.dto.VehicleDTO;
 import com.dashtap.DASHTAP.entity.BookAVehicle;
 import com.dashtap.DASHTAP.entity.Vehicle;
+import com.dashtap.DASHTAP.enums.BookVehicleStatus;
 import com.dashtap.DASHTAP.repository.BookAVehicleRepository;
 import com.dashtap.DASHTAP.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -101,6 +103,21 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<BookAVehicleDTO> getBookings() {
         return bookAVehicleRepository.findAll().stream().map(BookAVehicle::getBookAVehicleDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean changeBookingStatus(Long bookingId, String status) {
+        Optional<BookAVehicle> optionalBookAVehicle = bookAVehicleRepository.findById(bookingId);
+        if (optionalBookAVehicle.isPresent()) {
+            BookAVehicle exsistingBookAVehicle = optionalBookAVehicle.get();
+            if (Objects.equals(status, "Approve"))
+                exsistingBookAVehicle.setBookVehicleStatus(BookVehicleStatus.Approved);
+            else
+                exsistingBookAVehicle.setBookVehicleStatus(BookVehicleStatus.Rejected);
+            bookAVehicleRepository.save(exsistingBookAVehicle);
+            return true;
+            }
+        return false;
     }
 
 }
