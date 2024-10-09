@@ -11,4 +11,6 @@ public interface UserService {
 
     boolean bookAVehicle(BookAVehicleDTO bookAVehicleDTO);
 
+    VehicleDTO getVehicleById(Long vehicleId);
+
 }

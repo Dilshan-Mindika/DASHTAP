@@ -31,4 +31,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    @GetMapping("vehicle/{vehicleId}")
+    public ResponseEntity<VehicleDTO> getVehicleById(@PathVariable Long vehicleId) {
+        VehicleDTO vehicleDTO = userService.getVehicleById(vehicleId);
+        if (vehicleDTO == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.ok(vehicleDTO);
+    }
+
 }

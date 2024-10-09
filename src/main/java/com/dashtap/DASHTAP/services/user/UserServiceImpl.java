@@ -51,4 +51,10 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public VehicleDTO getVehicleById(Long vehicleId) {
+        Optional<Vehicle> optionalVehicle = vehicleRepository.findById(vehicleId);
+        return optionalVehicle.map(Vehicle::getVehicleDTO).orElse(null);
+    }
+
 }
