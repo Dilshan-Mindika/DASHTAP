@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<BookAVehicleDTO> getBookingsByUserId(Long userId) {
-        return bookAVehicleRepository.findAllByUserId(userId);
+        return bookAVehicleRepository.findAllByUserId(userId); //error occurs on here[.stream().map(BookAVehicle::getBookAVehicleDTO).collect(Collectors.toList()]
     }
 
 }
