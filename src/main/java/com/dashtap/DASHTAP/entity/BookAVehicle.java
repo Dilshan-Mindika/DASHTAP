@@ -1,14 +1,14 @@
 package com.dashtap.DASHTAP.entity;
 
+import com.dashtap.DASHTAP.dto.BookAVehicleDTO;
 import com.dashtap.DASHTAP.enums.BookVehicleStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 @Entity
 @Data
@@ -18,17 +18,11 @@ public class BookAVehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate fromDate;
+    private Date fromDate;
 
-    private LocalDate toDate;
+    private Date toDate;
 
-    @Transient
-    public Long getDays() {
-        if (fromDate != null && toDate != null) {
-            return ChronoUnit.DAYS.between(fromDate, toDate);
-        }
-        return null;
-    }
+    private Long days;
 
     private Long price;
 
@@ -46,4 +40,16 @@ public class BookAVehicle {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Vehicle vehicle;
+
+    public BookAVehicleDTO getBookAVehicleDTO() {
+        BookAVehicleDTO bookAVehicleDTO = new BookAVehicleDTO();
+        bookAVehicleDTO.setId(id);
+        bookAVehicleDTO.setFromDate(fromDate);
+        bookAVehicleDTO.setToDate(toDate);
+        bookAVehicleDTO.setPrice(price);
+        bookAVehicleDTO.setBookVehicleStatus(bookVehicleStatus);
+        bookAVehicleDTO.setUserId(user.getId());
+        bookAVehicleDTO.setVehicleId(vehicle.getId());
+        return bookAVehicleDTO;
+    }
 }

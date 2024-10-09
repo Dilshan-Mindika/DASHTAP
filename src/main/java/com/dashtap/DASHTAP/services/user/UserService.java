@@ -13,4 +13,6 @@ public interface UserService {
 
     VehicleDTO getVehicleById(Long vehicleId);
 
+    List<BookAVehicleDTO> getBookingsByUserId(Long userId);
+
 }

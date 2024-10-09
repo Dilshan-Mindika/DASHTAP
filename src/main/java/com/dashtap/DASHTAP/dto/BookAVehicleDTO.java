@@ -22,4 +22,8 @@ public class BookAVehicleDTO {
 
     private Long userId;
 
+    private String userName;
+
+    private String email;
+
 }
