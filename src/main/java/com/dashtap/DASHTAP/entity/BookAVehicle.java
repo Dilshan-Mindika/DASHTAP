@@ -44,10 +44,13 @@ public class BookAVehicle {
     public BookAVehicleDTO getBookAVehicleDTO() {
         BookAVehicleDTO bookAVehicleDTO = new BookAVehicleDTO();
         bookAVehicleDTO.setId(id);
+        bookAVehicleDTO.setDays(days);
         bookAVehicleDTO.setFromDate(fromDate);
         bookAVehicleDTO.setToDate(toDate);
         bookAVehicleDTO.setPrice(price);
         bookAVehicleDTO.setBookVehicleStatus(bookVehicleStatus);
+        bookAVehicleDTO.setEmail(user.getEmail());
+        bookAVehicleDTO.setUserName(user.getName());
         bookAVehicleDTO.setUserId(user.getId());
         bookAVehicleDTO.setVehicleId(vehicle.getId());
         return bookAVehicleDTO;

@@ -38,4 +38,9 @@ public class UserController {
         return ResponseEntity.ok(vehicleDTO);
     }
 
+    @GetMapping("vehicle/bookings/{userId}")
+    public ResponseEntity<List<BookAVehicleDTO>> getBookingsByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getBookingsByUserId(userId));
+    }
+
 }

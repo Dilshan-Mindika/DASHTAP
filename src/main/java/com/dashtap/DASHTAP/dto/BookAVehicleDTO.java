@@ -14,6 +14,8 @@ public class BookAVehicleDTO {
 
     private Date toDate;
 
+    private Long days;
+
     private Long price;
 
     private BookVehicleStatus bookVehicleStatus;
