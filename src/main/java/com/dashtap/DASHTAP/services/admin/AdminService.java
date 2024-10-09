@@ -1,7 +1,9 @@
 package com.dashtap.DASHTAP.services.admin;
 
 import com.dashtap.DASHTAP.dto.BookAVehicleDTO;
+import com.dashtap.DASHTAP.dto.SearchVehicleDTO;
 import com.dashtap.DASHTAP.dto.VehicleDTO;
+import com.dashtap.DASHTAP.dto.VehicleDTOListDTO;
 import com.dashtap.DASHTAP.entity.BookAVehicle;
 
 import java.io.IOException;
@@ -22,4 +24,6 @@ public interface AdminService {
     List<BookAVehicleDTO> getBookings();
 
     boolean changeBookingStatus(Long bookingId, String status);
+
+    VehicleDTOListDTO searchVehicle(SearchVehicleDTO searchVehicleDTO);
 }

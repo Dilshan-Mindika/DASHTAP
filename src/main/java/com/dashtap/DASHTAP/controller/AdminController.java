@@ -1,6 +1,7 @@
 package com.dashtap.DASHTAP.controller;
 
 import com.dashtap.DASHTAP.dto.BookAVehicleDTO;
+import com.dashtap.DASHTAP.dto.SearchVehicleDTO;
 import com.dashtap.DASHTAP.dto.VehicleDTO;
 import com.dashtap.DASHTAP.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -68,4 +69,10 @@ public class AdminController {
         if (success) return ResponseEntity.ok().build();
         return ResponseEntity.notFound().build();
     }
+
+    @PostMapping("/vehicle/search")
+    public ResponseEntity<?> searchVehicle(@RequestBody SearchVehicleDTO searchVehicleDTO) {
+        return ResponseEntity.ok(adminService.searchVehicle(searchVehicleDTO));
+    }
+
 }
