@@ -1,6 +1,7 @@
 package com.dashtap.DASHTAP.controller;
 
 import com.dashtap.DASHTAP.dto.BookAVehicleDTO;
+import com.dashtap.DASHTAP.dto.SearchVehicleDTO;
 import com.dashtap.DASHTAP.dto.VehicleDTO;
 import com.dashtap.DASHTAP.services.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,11 @@ public class UserController {
     @GetMapping("vehicle/bookings/{userId}")
     public ResponseEntity<List<BookAVehicleDTO>> getBookingsByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(userService.getBookingsByUserId(userId));
+    }
+
+    @PostMapping("/vehicle/search")
+    public ResponseEntity<?> searchVehicle(@RequestBody SearchVehicleDTO searchVehicleDTO) {
+        return ResponseEntity.ok(userService.searchVehicle(searchVehicleDTO));
     }
 
 }
