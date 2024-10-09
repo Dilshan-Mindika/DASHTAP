@@ -1,7 +1,10 @@
 package com.dashtap.DASHTAP.services.admin;
 
+import com.dashtap.DASHTAP.dto.BookAVehicleDTO;
 import com.dashtap.DASHTAP.dto.VehicleDTO;
+import com.dashtap.DASHTAP.entity.BookAVehicle;
 import com.dashtap.DASHTAP.entity.Vehicle;
+import com.dashtap.DASHTAP.repository.BookAVehicleRepository;
 import com.dashtap.DASHTAP.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,8 @@ import java.util.stream.Collectors;
 public class AdminServiceImpl implements AdminService {
 
     private final VehicleRepository vehicleRepository;
+
+    private final BookAVehicleRepository bookAVehicleRepository;
 
     @Override
     public boolean postVehicle(VehicleDTO vehicleDTO) throws IOException {
@@ -91,6 +96,11 @@ public class AdminServiceImpl implements AdminService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public List<BookAVehicleDTO> getBookings() {
+        return bookAVehicleRepository.findAll().stream().map(BookAVehicle::getBookAVehicleDTO).collect(Collectors.toList());
     }
 
 }
