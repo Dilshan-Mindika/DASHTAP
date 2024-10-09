@@ -6,6 +6,7 @@ import com.dashtap.DASHTAP.entity.User;
 import com.dashtap.DASHTAP.entity.Vehicle;
 import com.dashtap.DASHTAP.dto.VehicleDTO;
 import com.dashtap.DASHTAP.enums.BookVehicleStatus;
+import com.dashtap.DASHTAP.repository.BookAVehicleRepository;
 import com.dashtap.DASHTAP.repository.UserRepository;
 import com.dashtap.DASHTAP.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    private final BookAVehicleRepository bookAVehicleRepository;
+
     @Override
     public List<VehicleDTO> getAllVehicles() {
         return vehicleRepository.findAll().stream().map(Vehicle::getVehicleDTO).collect(Collectors.toList());
@@ -42,6 +45,8 @@ public class UserServiceImpl implements UserService {
             long diffInMilliSeconds = bookAVehicleDTO.getToDate().getTime() - bookAVehicleDTO.getFromDate().getTime();
             long days = TimeUnit.MICROSECONDS.toDays(diffInMilliSeconds);
             bookAVehicle.setPrice(days * existingVehicle.getRate());
+            bookAVehicleRepository.save(bookAVehicle);
+            return true;
         }
         return false;
     }
